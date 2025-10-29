@@ -1,4 +1,4 @@
-package U1ProgramacionConcurrenteMultiproceso;
+package edu.thepower.u1programacionconcurrentemultiproceso;
 
 // stdout -> standard out
 // stderr -> standard error
