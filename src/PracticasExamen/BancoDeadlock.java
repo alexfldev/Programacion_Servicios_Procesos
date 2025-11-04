@@ -1,5 +1,5 @@
 // Define el "paquete" o carpeta lógica donde se agrupa esta clase.
-package PracticaExamen;
+package PracticasExamen;
 
 // Importa la clase AtomicInteger, que se usa para crear IDs únicos 
 // de forma segura en entornos con múltiples hilos.

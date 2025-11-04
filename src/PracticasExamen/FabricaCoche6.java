@@ -1,5 +1,5 @@
 // Define el paquete o carpeta lógica donde se agrupa esta clase.
-package PracticaExamen;
+package PracticasExamen;
 
 // Importaciones necesarias para colecciones (Map), concurrencia (concurrent.*) y contadores atómicos (atomic.*).
 // Estas importaciones ahora sirven para la clase principal Y sus clases internas.

@@ -1,5 +1,5 @@
 // Define el paquete o carpeta lógica donde se agrupa esta clase.
-package PracticaExamen;
+package PracticasExamen;
 
 
 // Importaciones necesarias:
