@@ -1,4 +1,4 @@
-package PracticasExamen;
+package Examen1ev.PracticasExamen;
 
 // Define el paquete o carpeta lógica donde se agrupa esta clase.
 

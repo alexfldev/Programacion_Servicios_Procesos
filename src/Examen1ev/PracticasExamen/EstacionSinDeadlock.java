@@ -1,5 +1,5 @@
 // Define el paquete o carpeta lógica donde se agrupa esta clase.
-package PracticasExamen;
+package Examen1ev.PracticasExamen;
 
 /**
  * 🚗🔌 Simulación de coches (hilos) que necesitan usar dos estaciones de carga
