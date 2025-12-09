@@ -71,7 +71,7 @@ public class U4P02SelfHealingServer {
                 Socket sc = socket.accept();
 
                 // Si llega un cliente real (antes de los 5 seg), creamos un hilo para atenderlo
-                new Thread(() -> {
+               new  Thread(() -> {
                     try (BufferedReader bf = new BufferedReader(new InputStreamReader(sc.getInputStream()));
                          PrintWriter pr = new PrintWriter(sc.getOutputStream(), true)) {
 
