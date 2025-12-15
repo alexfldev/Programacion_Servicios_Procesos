@@ -6,17 +6,20 @@ import java.util.Scanner;
 
 public class U3P03EchoClient {
     public static void main(String[] args) {
-        // Configuración de conexión (coincidiendo con tu servidor)
-        // Nota: En un entorno real, estos valores deberían venir de args[], como hiciste en el servidor.
+
+        // 1. CONFIGURACIÓN INICIAL
+        // Es buena práctica poner esto en variables al principio por si te piden cambiar la IP o puerto rápido.
         String host = "localhost";
-        int puerto = 3000;
+        int puerto = 3000; // ¡Ojo! Asegúrate de que el servidor escucha en el 3000
 
         System.out.println("--- Iniciando Cliente Echo ---");
         System.out.println("Conectando a " + host + ":" + puerto + "...");
 
-        // Try-with-resources: Cierra socket, scanner y streams automáticamente al salir
+        // 2. CONEXIÓN SEGURA (Try-with-resources EXTENDIDO)
+        // Fíjate que aquí declaramos TODO dentro del paréntesis del try.
+        // Al terminar el programa (o si hay error), Java cerrará el Socket, el Scanner y los Buffers automáticamente.
         try (Socket socket = new Socket(host, puerto);
-             PrintWriter pw = new PrintWriter(socket.getOutputStream(), true);
+             PrintWriter pw = new PrintWriter(socket.getOutputStream(), true); // true = autoFlush (envío inmediato)
              BufferedReader bf = new BufferedReader(new InputStreamReader(socket.getInputStream()));
              Scanner sc = new Scanner(System.in)) {
 
@@ -25,24 +28,28 @@ public class U3P03EchoClient {
             String msg;
             String respuesta;
 
-            // Bucle infinito controlado por breaks
+            // 3. BUCLE INFINITO CONTROLADO
+            // Usamos while(true) y cortamos manualmente con 'break'.
+            // A veces es más limpio que un do-while si hay muchas condiciones de salida.
             while (true) {
-                System.out.print("Tú: "); // Prompt visual
+                System.out.print("Tú: "); // Decoración visual para saber cuándo escribir
                 msg = sc.nextLine().trim();
 
-                // 1. Enviamos el mensaje al servidor
+                // A. ENVIAR MENSAJE
                 pw.println(msg);
 
-                // Si el usuario quiere salir, rompemos el bucle antes de esperar respuesta
-                // (Opcional: puedes esperar la confirmación del servidor si prefieres)
+                // CONDICIÓN DE SALIDA 1: EL USUARIO QUIERE IRSE
                 if (msg.equalsIgnoreCase("/salir")) {
-                    break;
+                    break; // Rompe el while y va al final del programa
                 }
 
-                // 2. Esperamos la respuesta del servidor (bloqueante)
+                // B. LEER RESPUESTA (Bloqueante)
+                // El programa se para aquí esperando al servidor.
                 respuesta = bf.readLine();
 
-                // 3. Validación crítica: Si el servidor se apaga, respuesta será null
+                // CONDICIÓN DE SALIDA 2: EL SERVIDOR SE MUERE (¡IMPORTANTE!)
+                // Si el servidor se apaga o cierra el socket, readLine() devuelve NULL.
+                // Si no pones este if, tu programa podría entrar en un bucle infinito de errores o lanzar una excepción fea.
                 if (respuesta == null) {
                     System.err.println("El servidor ha cerrado la conexión inesperadamente.");
                     break;
@@ -52,6 +59,7 @@ public class U3P03EchoClient {
             }
 
         } catch (IOException e) {
+            // Error típico: El servidor no está encendido o la IP está mal.
             System.err.println("Error de conexión (¿Está el servidor encendido?): " + e.getMessage());
         }
 
