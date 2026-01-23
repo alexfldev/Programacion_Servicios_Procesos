@@ -1,5 +1,4 @@
-package edu.thepower.u5seguridad;
-
+package u5seguridad;
 import java.util.HashMap;
 
 import java.util.Map;

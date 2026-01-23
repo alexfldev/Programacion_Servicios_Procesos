@@ -1,5 +1,4 @@
-package edu.thepower.u5seguridad;
-
+package  u5seguridad;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;

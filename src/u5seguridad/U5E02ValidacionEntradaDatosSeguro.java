@@ -1,4 +1,4 @@
-package edu.thepower.u5seguridad;
+package  u5seguridad;
 
 import java.util.Scanner;
 import java.util.regex.Pattern;
